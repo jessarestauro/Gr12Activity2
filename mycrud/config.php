@@ -1,7 +1,7 @@
 <?php
 
 $databaseHost = 'localhost';
-$databaseName = 'tbl_employees';
+$databaseName = 'Omandac';
 $databaseUsername = 'root';
 $databasePassword = '';
 

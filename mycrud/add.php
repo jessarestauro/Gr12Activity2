@@ -9,55 +9,55 @@
 include_once("config.php");
 
 if(isset($_POST['Submit'])) {	
-	$id = $_POST['id'];
-	$FirstName = $_POST['efirstname'];
-	$LastName= $_POST['elastname'];
-	$Gender= $_POST['egender'];
-	$Department = $_POST['edepartment'];
-	$Dateemployed= $_POST['edateemployed'];
-	$Salary= $_POST['esalary'];
+	$eFirstName = $_POST['eFirstName'];
+	$eLastName = $_POST['eLastName'];
+	$eGender = $_POST['eGender'];
+	$eDepartment = $_POST['eDepartment'];
+	$eDateEmployed = $_POST['eDateEmployed'];
+	$eSalary = $_POST['eSalary'];
 		
 	// checking empty fields
-	if(empty($id) || empty($FirstName) || empty($LastName) || empty($Gender) || empty($Department ) || empty($Dateemployed) || empty($Salary)){
+	if(empty($eFirstName) || empty($eLastName) || empty($eGender) || empty($eDepartment) || empty($eDateEmployed) || empty($eSalary)) {
 				
-		if(empty($FirstName)) {
-			echo "<font color='red'>FirstName field is empty.</font><br/>";
+		if(empty($eFirstName)) {
+			echo "<font color='red'>First Name field is empty.</font><br/>";
 		}
 		
-		if(empty($LastName)) {
-			echo "<font color='red'>LastName field is empty.</font><br/>";
+		if(empty($eLastName)) {
+			echo "<font color='red'>Last Name field is empty.</font><br/>";
 		}
 		
-		if(empty($Gender)) {
+		if(empty($eGender)) {
 			echo "<font color='red'>Gender field is empty.</font><br/>";
 		}
-		
-		if(empty($Department)) {
+					
+		if(empty($eDepartment)) {
 			echo "<font color='red'>Department field is empty.</font><br/>";
 		}
-
-		if(empty($Dateemployed)) {
-			echo "<font color='red'>Dateemployed field is empty.</font><br/>";
+		
+		if(empty($eDateEmployed)) {
+			echo "<font color='red'>Date Employed field is empty.</font><br/>";
 		}
-		if(empty($Salary)) {
+		
+		if(empty($eSalary)) {
 			echo "<font color='red'>Salary field is empty.</font><br/>";
 		}
+		
 		//link to the previous page
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} else { 
 		// if all the fields are filled (not empty) 
 			
 		//insert data to database		
-		$sql = "INSERT INTO tbl_employees(efirstname, elastname, egender, edepartment, edateemployed, esalary,) VALUES(:efirstname, :elastname, :elastname, :edepartment, :edateemployed, :esalary)";
+		$sql = "INSERT INTO tbl_employees(eFirstName, eLastName, eGender, eDepartment, eDateEmployed, eSalary) VALUES(:eFirstName, :eLastName, :eGender, :eDepartment, :eDateEmployed, :eSalary)";
 		$query = $dbConn->prepare($sql);
 				
-		$query->bindparam(':id', $id);
-		$query->bindparam(':efirstname', $FirstName);
-		$query->bindparam(':elastname', $LastName);
-		$query->bindparam(':egender', $Gender);
-		$query->bindparam(':edepartment', $Department);
-		$query->bindparam(':edateemployed', $Dateemployed);
-		$query->bindparam(':esalary', $Salary);
+		$query->bindparam(':eFirstName', $eFirstName);
+		$query->bindparam(':eLastName', $eLastName);
+		$query->bindparam(':eGender', $eGender);
+		$query->bindparam(':eDepartment', $eDepartment);
+		$query->bindparam(':eDateEmployed', $eDateEmployed);
+		$query->bindparam(':eSalary', $eSalary);
 		$query->execute();
 		
 		// Alternative to above bindparam and execute

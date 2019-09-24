@@ -4,54 +4,53 @@ include_once("config.php");
 
 if(isset($_POST['update']))
 {	
-	$id = $_POST['id'];
+	$eid = $_POST['eid'];
 	
-	$FirstName=$_POST['efirstname'];
-	$LastName=$_POST['elastname'];
-	$Gender=$_POST['egender'];
-	$Department=$_POST['edepartment'];
-	$Dateemployed=$_POST['edateemployed'];
-	$Salary=$_POST['esalary'];
-
-
+	$eFirstName=$_POST['eFirstName'];
+	$eLastName=$_POST['eLastName'];
+	$eGender=$_POST['eGender'];	
+	$eDepartment=$_POST['eDepartment'];
+	$eDateEmployed=$_POST['eDateEmployed'];
+	$eSalary=$_POST['eSalary'];	
 	
 	// checking empty fields
-	if(empty($id) || empty($FirstName) || empty($LastName) || empty($Gender) || empty($Department) || empty($Dateemployed) || empty($Salary)){
+	if(empty($eFirstName) || empty($eLastName) || empty($eGender) || empty($eDepartment) || empty($eDateEmployed) || empty($eSalary)) {
 				
-		if(empty($FirstName)) {
-			echo "<font color='red'>efirstname field is empty.</font><br/>";
+		if(empty($eFirstName)) {
+			echo "<font color='red'>First Name field is empty.</font><br/>";
 		}
 		
-		if(empty($LastName)) {
-			echo "<font color='red'>elastname field is empty.</font><br/>";
+		if(empty($eLastName)) {
+			echo "<font color='red'>Last Name field is empty.</font><br/>";
 		}
 		
-		if(empty($Gender)) {
-			echo "<font color='red'>egender field is empty.</font><br/>";
+		if(empty($eGender)) {
+			echo "<font color='red'>Gender field is empty.</font><br/>";
+		}
+					
+		if(empty($eDepartment)) {
+			echo "<font color='red'>Department field is empty.</font><br/>";
 		}
 		
-		if(empty($Department)) {
-			echo "<font color='red'>edepartment field is empty.</font><br/>";
+		if(empty($eDateEmployed)) {
+			echo "<font color='red'>Date Employed field is empty.</font><br/>";
 		}
-
-		if(empty($Dateemployed)) {
-			echo "<font color='red'>edateemployed field is empty.</font><br/>";
-		}
-		if(empty($Salary)) {
-			echo "<font color='red'>esalary field is empty.</font><br/>";
-		}
+		
+		if(empty($eSalary)) {
+			echo "<font color='red'>Salary field is empty.</font><br/>";
+		}	
 	} else {	
 		//updating the table
-		$sql = "UPDATE tbl_employees SET efirstname=:efirstname, elastname=:elastname, edepartment=:edepartment edateemployed=:edateemployed esalary=:esalary WHERE id=:id";
+		$sql = "UPDATE tbl_employees SET eFirstName=:eFirstName, eLastName=:eLastName, eGender=:eGender, eDepartment=:eDepartment, eDateEmployed=:eDateEmployed, eSalary=:eSalary WHERE eid=:eid";
 		$query = $dbConn->prepare($sql);
 				
-		$query->bindparam(':id', $id);
-		$query->bindparam(':efirstname', $FirstName);
-		$query->bindparam(':elastname', $LastName);
-		$query->bindparam(':egender', $Gender);
-		$query->bindparam(':edepartment', $Department);
-		$query->bindparam(':edateemployed', $Dateemployed);
-		$query->bindparam(':esalary', $Salary);
+		$query->bindparam(':eid', $eid);
+		$query->bindparam(':eFirstName', $eFirstName);
+		$query->bindparam(':eLastName', $eLastName);
+		$query->bindparam(':eGender', $eGender);
+		$query->bindparam(':eDepartment', $eDepartment);
+		$query->bindparam(':eDateEmployed', $eDateEmployed);
+		$query->bindparam(':eSalary', $eSalary);
 		$query->execute();
 		
 		// Alternative to above bindparam and execute
@@ -64,22 +63,23 @@ if(isset($_POST['update']))
 ?>
 <?php
 //getting id from url
-$id = $_GET['id'];
+$eid = $_GET['eid'];
 
 //selecting data associated with this particular id
-$sql = "SELECT * FROM users WHERE id=:id";
+$sql = "SELECT * FROM tbl_employees WHERE eid=:eid";
 $query = $dbConn->prepare($sql);
-$query->execute(array(':id' => $id));
+$query->execute(array(':eid' => $eid));
 
 while($row = $query->fetch(PDO::FETCH_ASSOC))
 {
-	$FirstName = $row['efirstname'];
-	$LastName = $row['elastname'];
-	$Gender = $row['egender'];
-	$Department = $row['edepartment'];
-	$Dateemployed = $row['edateemployed'];
-	$Salary = $row['esalary'];
+	$eFirstName = $row['eFirstName'];
+	$eLastName = $row['eLastName'];
+	$eGender = $row['eGender'];
+	$eDepartment = $row['eDepartment'];
+	$eDateEmployed = $row['eDateEmployed'];
+	$eSalary = $row['eSalary'];
 }
+
 ?>
 <html>
 <head>	
@@ -93,31 +93,31 @@ while($row = $query->fetch(PDO::FETCH_ASSOC))
 	<form name="form1" method="post" action="edit.php">
 		<table border="0">
 			<tr> 
-				<td>FirstName</td>
-				<td><input type="text" name="efirstname" value="<?php echo $FirstName;?>"></td>
+				<td>eFirstName</td>
+				<td><input type="text" name="eFirstName" value="<?php echo $eFirstName;?>"></td>
 			</tr>
 			<tr> 
-				<td>LastName</td>
-				<td><input type="text" name="elastname" value="<?php echo $LastName;?>"></td>
+				<td>eLastName</td>
+				<td><input type="text" name="eLastName" value="<?php echo $eLastName;?>"></td>
 			</tr>
 			<tr> 
-				<td>Gender</td>
-				<td><input type="text" name="egender" value="<?php echo $Gender;?>"></td>
+				<td>eGender</td>
+				<td><input type="text" name="eGender" value="<?php echo $eGender;?>"></td>
 			</tr>
 			<tr> 
-				<td>Department</td>
-				<td><input type="text" name="edepartment" value="<?php echo $Department;?>"></td>
+				<td>eDepartment</td>
+				<td><input type="text" name="eDepartment" value="<?php echo $eDepartment;?>"></td>
 			</tr>
 			<tr> 
-				<td>Dateemployed</td>
-				<td><input type="text" name="edateemployed" value="<?php echo $Dateemployed;?>"></td>
+				<td>eDateEmployed</td>
+				<td><input type="text" name="eDateEmployed" value="<?php echo $eDateEmployed;?>"></td>
 			</tr>
 			<tr> 
-				<td>Salary</td>
-				<td><input type="text" name="esalary" value="<?php echo $Salary;?>"></td>
+				<td>eSalary</td>
+				<td><input type="text" name="eSalary" value="<?php echo $eSalary;?>"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+				<td><input type="hidden" name="eid" value=<?php echo $_GET['eid'];?>></td>
 				<td><input type="submit" name="update" value="Update"></td>
 			</tr>
 		</table>

@@ -1,15 +1,14 @@
-create database tbl_employees;
+create database Omandac;
 
- 
-use tbl_employees;
+use Omandac;
 
 CREATE TABLE `tbl_employees` (
-  `id` int(11) NOT NULL auto_increment,
-  `efirstname` varchar(100) NOT NULL,
-  `elastname` varchar(100) NOT NULL,
-  `egender` varchar(100) NOT NULL,
-  `edepartment` varchar(100) NOT NULL,
-  `edateemployed` varchar(100) NOT NULL,
-  `esalary` float  NOT NULL,
-  PRIMARY KEY  (`id`)
+  `eid` int(11) NOT NULL auto_increment,
+  `eFirstName` varchar(100) NOT NULL,
+  `eLastName` varchar(100) NOT NULL,
+  `eGender` varchar(100) NOT NULL,
+  `eDepartment` varchar(100) NOT NULL,
+  `eDateEmployed` varchar(100) NOT NULL,
+  `eSalary` float,
+  PRIMARY KEY  (`eid`)
 );
