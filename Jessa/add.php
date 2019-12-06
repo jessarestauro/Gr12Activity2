@@ -35,7 +35,7 @@ if(isset($_POST['Submit'])) {
 		}
 		
 		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		echo "<br/><a href='javascript:self.history.back();' class='btn btn-danger'>Go Back</a>";
 	} else { 
 		// if all the fields are filled (not empty) 
 			
@@ -53,7 +53,7 @@ if(isset($_POST['Submit'])) {
 		// $query->execute(array(':name' => $name, ':email' => $email, ':age' => $age));
 		
 		//display success message
-		echo "<font color='green'>Data added successfully.";
+		echo "<font color='green'>Registered successfully.";
 		echo "<br/><a href='index.php' class='btn btn-success'>View Result</a>";
 	}
 }
