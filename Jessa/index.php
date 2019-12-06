@@ -14,7 +14,7 @@ $result = $dbConn->query("SELECT * FROM users ORDER BY id DESC");
 
 </head>
 
-<body>
+<body style="background-color: #95a5a6">
 <a href="register.html" class="btn btn-primary">Add New Data</a><br/><br/>
 
 	<table width='80%' border=0>
